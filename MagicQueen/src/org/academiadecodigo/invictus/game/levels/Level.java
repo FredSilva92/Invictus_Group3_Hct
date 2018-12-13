@@ -19,8 +19,8 @@ public enum Level {
     LEVEL3("level3");
 
 
-    private static final String BRICK_IMAGE_PATH = "/Users/codecadet/Hackhaton/Invictus_Group3_Hct/MagicQueen/resources/assets/wall.jpg";
-    private static final String FILE_PATH = "resources/levels";
+    private static final String BRICK_IMAGE_PATH = "assets/wall.jpg";
+    private static final String FILE_PATH = "resources/levels/";
     private static final int WALL_SIZE = 25;
     private List<Representable> walls;
 

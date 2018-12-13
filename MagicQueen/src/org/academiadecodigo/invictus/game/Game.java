@@ -16,7 +16,7 @@ public class Game implements InputHandler {
     public static final int WIDTH = 500;
     public static final int HEIGHT = 500;
 
-    private static final String PLAYER_IMAGE = "/Users/codecadet/Hackhaton/Invictus_Group3_Hct/MagicQueen/resources/assets/fan.png";
+    private static final String PLAYER_IMAGE = "assets/fan.png";
     private static final int PLAYER_ONE_INITIAL_X = 50;
     private static final int PLAYER_ONE_INITIAL_Y = 50;
 
@@ -51,7 +51,6 @@ public class Game implements InputHandler {
     }
 
     private void initWalls() {
-        level = level.getNext();
         collisionDetector.setWalls(level.getWalls());
         level.show();
     }
