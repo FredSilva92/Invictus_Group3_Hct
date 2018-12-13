@@ -3,12 +3,14 @@ package org.academiadecodigo.invictus.game;
 import org.academiadecodigo.invictus.game.levels.Level;
 import org.academiadecodigo.invictus.game.representable.Guards;
 import org.academiadecodigo.invictus.game.representable.Player;
+import org.academiadecodigo.invictus.keyboard.InputHandler;
+import org.academiadecodigo.invictus.keyboard.Key;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Game {
+public class Game implements InputHandler {
 
     public static final int PADDING = 10;
     public static final int WIDTH = 500;
@@ -80,11 +82,11 @@ public class Game {
         level.hide();
     }
 
-    @Override
-    public void press(Key key) {}
+    public void press(Key key) {
 
-    @Override
-    public void release(Key key) {}
+    }
 
+    public void release(Key key) {
 
+    }
 }

@@ -7,4 +7,7 @@ public class Guards extends Representable{
     public Guards(Picture representation) {
         super(representation);
     }
+
+    public void move() {
+    }
 }
