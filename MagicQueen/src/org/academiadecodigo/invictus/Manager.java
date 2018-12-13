@@ -35,6 +35,6 @@ public class Manager {
     }
 
     private void reset() {
-        game.reset();
+        game.resetGame();
     }
 }

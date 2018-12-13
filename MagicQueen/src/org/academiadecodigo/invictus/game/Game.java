@@ -37,7 +37,7 @@ public class Game implements InputHandler {
         level = Level.LEVEL1;
 
         for (int i = 0; i < 3; i += 1) {
-            guards.add(new Guards(GUARD_IMAGE,collisionDetector));
+            guards.add(new Guards(GUARD_IMAGE, collisionDetector));
         }
     }
 
@@ -46,11 +46,14 @@ public class Game implements InputHandler {
 
         playerOne.show();
 
-        for(Guards guard:guards){
+        for (Guards guard : guards) {
             guard.show();
         }
 
-        while (!playerOne.isCaught()) {
+        while (!playerOne.isGameOver()) {
+            if (playerOne.isCaught()){
+                resetPlayer();
+            }
             movePlayers();
             moveGuards();
 
@@ -83,7 +86,8 @@ public class Game implements InputHandler {
         }
     }
 
-    public void reset() {
+    public void resetGame() {
+
         playerOne.reset(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y);
 
         for (Guards guard : guards) {
@@ -91,7 +95,13 @@ public class Game implements InputHandler {
         }
 
         guards.clear();
-        level.hide();
+        level = Level.LEVEL1;
+    }
+
+    public void resetPlayer(){
+        playerOne.reset(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y);
+        playerOne.show();
+
     }
 
     public void press(Key key) {

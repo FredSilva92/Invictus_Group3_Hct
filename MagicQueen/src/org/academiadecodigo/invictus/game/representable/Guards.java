@@ -2,7 +2,6 @@ package org.academiadecodigo.invictus.game.representable;
 
 import org.academiadecodigo.invictus.game.ColisionDetector;
 import org.academiadecodigo.invictus.game.Direction;
-import org.academiadecodigo.invictus.game.Game;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Guards extends Representable {
