@@ -83,10 +83,60 @@ public class Game implements InputHandler {
     }
 
     public void press(Key key) {
+        switch (key) {
+            case UP:
+                playerOne.setDirection(Direction.UP);
+                break;
+            case DOWN:
+                playerOne.setDirection(Direction.DOWN);
+                break;
+            case LEFT:
+                playerOne.setDirection(Direction.LEFT);
+                break;
+            case RIGHT:
+                playerOne.setDirection(Direction.RIGHT);
+                break;
+                /*
+            case W:
+                playerTwo.setDirection(Direction.UP);
+                break;
+            case S:
+                playerTwo.setDirection(Direction.DOWN);
+                break;
+            case A:
+                playerTwo.setRotation(Direction.LEFT);
+                break;
+            case D:
+                playerTwo.setRotation(Direction.RIGHT);
+                break;
+            case Q:
+                playerTwo.prepareShot();
+                break;
+                */
+        }
 
     }
 
     public void release(Key key) {
-
+        switch (key) {
+            case UP:
+            case DOWN:
+                playerOne.setDirection(null);
+                break;
+            case RIGHT:
+            case LEFT:
+                playerOne.setDirection(null);
+                break;
+                /*
+            case W:
+            case S:
+                playerTwo.setDirection(null);
+                break;
+            case A:
+            case D:
+                playerTwo.setRotation(null);
+                break;
+                */
+        }
     }
 }

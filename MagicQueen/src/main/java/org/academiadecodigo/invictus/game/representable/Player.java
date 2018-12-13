@@ -63,5 +63,14 @@ public class Player extends Representable {
         key = true;
     }
 
+    public void setDirection(Direction direction) {
+        if (direction == Direction.RIGHT || direction == Direction.LEFT) {
+            return;
+        }
+
+        this.direction = direction;
+    }
+
+
 
 }
