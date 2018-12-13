@@ -9,6 +9,9 @@ public class KeyboardListener implements KeyboardHandler {
 
     private InputHandler handler;
 
+    public void setHandler(InputHandler handler) {
+        this.handler = handler;
+    }
     public void init() {
         Keyboard keyboard = new Keyboard(this);
 
@@ -47,7 +50,4 @@ public class KeyboardListener implements KeyboardHandler {
         throw new IllegalArgumentException("unknown key code");
     }
 
-    public void setHandler(InputHandler handler) {
-        this.handler = handler;
-    }
 }
