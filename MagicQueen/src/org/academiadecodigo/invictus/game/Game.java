@@ -13,8 +13,8 @@ import java.util.List;
 public class Game implements InputHandler {
 
     public static final int PADDING = 10;
-    public static final int WIDTH = 500;
-    public static final int HEIGHT = 500;
+    public static final int WIDTH = 1500;
+    public static final int HEIGHT = 850;
 
     private static final String PLAYER_IMAGE = "assets/fan.png";
     private static final int PLAYER_ONE_INITIAL_X = 50;

@@ -21,7 +21,7 @@ public enum Level {
 
     private static final String BRICK_IMAGE_PATH = "assets/wall.jpg";
     private static final String FILE_PATH = "resources/levels/";
-    private static final int WALL_SIZE = 25;
+    private static final int WALL_SIZE = 24;
     private List<Representable> walls;
 
     Level(String path) {
