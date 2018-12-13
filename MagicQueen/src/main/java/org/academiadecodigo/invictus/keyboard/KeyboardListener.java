@@ -26,10 +26,12 @@ public class KeyboardListener implements KeyboardHandler {
         keyboard.addEventListener(event);
     }
 
+    @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         handler.press(decode(keyboardEvent.getKey()));
     }
 
+    @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
         handler.release(decode(keyboardEvent.getKey()));
     }
