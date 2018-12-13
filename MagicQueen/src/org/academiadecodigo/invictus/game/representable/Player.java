@@ -7,7 +7,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player extends Representable {
 
-    private static final int SPEED = 2;
+    private static final int SPEED = 4;
     private ColisionDetector colisionDetector;
     private boolean key;
     private boolean caught;
