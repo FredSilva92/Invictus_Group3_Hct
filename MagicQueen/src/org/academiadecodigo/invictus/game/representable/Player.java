@@ -44,33 +44,33 @@ public class Player extends Representable {
             return;
         }
 
-       switch (direction){
-           case UP:
-               representation.translate( 0,  -SPEED);
+        switch (direction) {
+            case UP:
+                representation.translate(0, -SPEED);
 
-               if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
-                   representation.translate( 0, SPEED);
-               }
-               break;
-           case DOWN:
-               representation.translate( 0 ,  SPEED);
-               if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
-                   representation.translate( 0, -SPEED);
-               }
-               break;
-           case LEFT:
-               representation.translate( -SPEED,  0);
-               if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
-                   representation.translate( SPEED, 0);
-               }
-               break;
-           case RIGHT:
-               representation.translate( SPEED,  0);
-               if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
-                   representation.translate( -SPEED, 0);
-               }
-               break;
-       }
+                if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
+                    representation.translate(0, SPEED);
+                }
+                break;
+            case DOWN:
+                representation.translate(0, SPEED);
+                if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
+                    representation.translate(0, -SPEED);
+                }
+                break;
+            case LEFT:
+                representation.translate(-SPEED, 0);
+                if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
+                    representation.translate(SPEED, 0);
+                }
+                break;
+            case RIGHT:
+                representation.translate(SPEED, 0);
+                if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
+                    representation.translate(-SPEED, 0);
+                }
+                break;
+        }
 
     }
 

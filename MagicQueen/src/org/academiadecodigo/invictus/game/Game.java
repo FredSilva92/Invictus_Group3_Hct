@@ -3,7 +3,6 @@ package org.academiadecodigo.invictus.game;
 import org.academiadecodigo.invictus.game.levels.Level;
 import org.academiadecodigo.invictus.game.representable.Guards;
 import org.academiadecodigo.invictus.game.representable.Player;
-import org.academiadecodigo.invictus.game.representable.Representable;
 import org.academiadecodigo.invictus.keyboard.InputHandler;
 import org.academiadecodigo.invictus.keyboard.Key;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -23,7 +22,7 @@ public class Game implements InputHandler {
     private static final String GUARD_IMAGE = "resources/assets/guard.png";
     private static final int PLAYER_ONE_INITIAL_X = 50;
     private static final int PLAYER_ONE_INITIAL_Y = 50;
-    private static final int NUM_GUARDS = 3;
+    private static final int NUM_GUARDS = 5;
 //    private static final int GUARD_ONE_INITIAL_X = 50;
 //    private static final int GUARD_ONE_INITIAL_Y = 50;
 
@@ -38,38 +37,17 @@ public class Game implements InputHandler {
 
         playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, PLAYER_IMAGE, collisionDetector);
 
-        level = Level.LEVEL1;
+        level = Level.LEVEL2;
 
     }
 
     public void start() {
         initWalls();
 
+        createGuards(level);
+
         playerOne.show();
 
-        /*
-
-        for (int i = 0; i < 3; i += 1) {
-
-            Guards guard = new Guards(GUARD_IMAGE, collisionDetector);
-
-            boolean test = false;
-
-            while (!test){
-                Point point = getNewPoint();
-                guard.setRepresentation(new Picture(point.getX(), point.getY(), GUARD_IMAGE));
-                for (Representable wall : level.getWalls()) {
-                    if (!guard.overlaps(wall)) {
-                        test = true;
-                    }
-                }
-            }
-
-            guards.add(guard);
-            guard.show();
-        }
-        */
-        createGuards(level);
 
 /*
         for (Guards guard : guards) {
@@ -91,33 +69,31 @@ public class Game implements InputHandler {
         }
     }
 
-    private void createGuards(Level level){
+    private void createGuards(Level level) {
         for (int i = 0; i < NUM_GUARDS; i += 1) {
 
             Guards guard = new Guards(GUARD_IMAGE, collisionDetector);
 
-            boolean test = false;
-
-            while (!test){
+            boolean test = true;
+            while (test) {
                 Point point = getNewPoint();
+
                 guard.setRepresentation(new Picture(point.getX(), point.getY(), GUARD_IMAGE));
-                for (Representable wall : level.getWalls()) {
-                    if (!guard.overlaps(wall)) {
-                        test = true;
-                    }
+                if (!guard.overlaps(level.getWalls())) {
+                    test = false;
                 }
             }
-
             guards.add(guard);
             guard.show();
         }
+
     }
+
 
     private Point getNewPoint() {
 
-        int temp_x = (int) (Math.random() * Game.WIDTH);
-        int temp_y = (int) (Math.random() * Game.HEIGHT);
-
+        int temp_x = (int) (Math.random() * (Game.WIDTH - PADDING - Game.PADDING)) + Game.PADDING*3;
+        int temp_y = (int) (Math.random() * (Game.HEIGHT - PADDING - Game.PADDING)) + Game.PADDING;
         return new Point(temp_x, temp_y);
     }
 
@@ -137,6 +113,7 @@ public class Game implements InputHandler {
         while (iterator.hasNext()) {
             Guards guard = iterator.next();
             guard.move();
+            System.out.println(guard.getRepresentation());
 
         }
     }
