@@ -1,7 +1,9 @@
 package org.academiadecodigo.invictus.game;
 
 import org.academiadecodigo.invictus.game.levels.Level;
-import org.academiadecodigo.invictus.game.representable.*;
+import org.academiadecodigo.invictus.game.representable.Guards;
+import org.academiadecodigo.invictus.game.representable.Player;
+import org.academiadecodigo.invictus.game.representable.Representable;
 import org.academiadecodigo.invictus.keyboard.InputHandler;
 import org.academiadecodigo.invictus.keyboard.Key;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -19,6 +21,8 @@ public class Game implements InputHandler {
 
     private static final String PLAYER_IMAGE = "resources/assets/fan.png";
     private static final String GUARD_IMAGE = "resources/assets/guard.png";
+    private static final String ROGER_TAYLOR_AUTO = "resources/assets/Roger-Taylor-auto.png";
+    private static final String BRIAN_MAY_AUTO = "resources/assets/Brian-may-auto.png";
     private static final int PLAYER_ONE_INITIAL_X = 50;
     private static final int PLAYER_ONE_INITIAL_Y = 50;
     private static final int NUM_GUARDS = 5;
@@ -32,6 +36,8 @@ public class Game implements InputHandler {
 
     public void init() {
         guards = new LinkedList<>();
+        collisionDetector = new ColisionDetector(guards);
+
         playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, PLAYER_IMAGE, collisionDetector);
 
         level = Level.LEVEL1;
@@ -58,6 +64,14 @@ public class Game implements InputHandler {
 
         while (!playerOne.isGameOver()) {
             if (playerOne.isCaught()) {
+                if (level == Level.LEVEL1) {
+                    Picture rogerTaylor = new Picture(0, 0, ROGER_TAYLOR_AUTO);
+                    rogerTaylor.draw();
+                }
+                else if (level == Level.LEVEL2) {
+                    Picture brianMay = new Picture(0, 0, BRIAN_MAY_AUTO);
+                    brianMay.draw();
+                }
                 resetPlayer();
             }
             if (collisionDetector.hitsKey(playerOne)) {
@@ -110,9 +124,7 @@ public class Game implements InputHandler {
             guards.add(guard);
             guard.show();
         }
-
     }
-
 
     private Point getNewPoint() {
 
@@ -128,7 +140,6 @@ public class Game implements InputHandler {
 
     private void movePlayers() {
         playerOne.move();
-
 
     }
 
