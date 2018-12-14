@@ -7,7 +7,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player extends Representable {
 
-    private static final int SPEED = 10;
+    private static final int SPEED = 15;
     private ColisionDetector colisionDetector;
     private boolean key;
     private boolean caught;
@@ -27,6 +27,7 @@ public class Player extends Representable {
         representation.translate(x - representation.getX(), y - representation.getY());
         caught = false;
         direction = null;
+        key = false;
 
     }
 
@@ -43,33 +44,33 @@ public class Player extends Representable {
             return;
         }
 
-       switch (direction){
-           case UP:
-               representation.translate( 0,  -SPEED);
+        switch (direction) {
+            case UP:
+                representation.translate(0, -SPEED);
 
-               if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
-                   representation.translate( 0, SPEED);
-               }
-               break;
-           case DOWN:
-               representation.translate( 0 ,  SPEED);
-               if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
-                   representation.translate( 0, -SPEED);
-               }
-               break;
-           case LEFT:
-               representation.translate( -SPEED,  0);
-               if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
-                   representation.translate( SPEED, 0);
-               }
-               break;
-           case RIGHT:
-               representation.translate( SPEED,  0);
-               if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
-                   representation.translate( -SPEED, 0);
-               }
-               break;
-       }
+                if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
+                    representation.translate(0, SPEED);
+                }
+                break;
+            case DOWN:
+                representation.translate(0, SPEED);
+                if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
+                    representation.translate(0, -SPEED);
+                }
+                break;
+            case LEFT:
+                representation.translate(-SPEED, 0);
+                if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
+                    representation.translate(SPEED, 0);
+                }
+                break;
+            case RIGHT:
+                representation.translate(SPEED, 0);
+                if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
+                    representation.translate(-SPEED, 0);
+                }
+                break;
+        }
 
     }
 
@@ -78,12 +79,16 @@ public class Player extends Representable {
         return caught;
     }
 
+    public void setColisionDetector(ColisionDetector colisionDetector) {
+        this.colisionDetector = colisionDetector;
+    }
+
     public boolean hasKey() {
         return key;
     }
 
     public void pickKey() {
-        key = true;
+      key = true;
     }
 
     public void setDirection(Direction direction) {

@@ -20,8 +20,6 @@ public class Game implements InputHandler {
     private static final String GUARD_IMAGE = "resources/assets/guard.png";
     private static final int PLAYER_ONE_INITIAL_X = 50;
     private static final int PLAYER_ONE_INITIAL_Y = 50;
-//    private static final int GUARD_ONE_INITIAL_X = 50;
-//    private static final int GUARD_ONE_INITIAL_Y = 50;
 
     private ColisionDetector collisionDetector;
     private Player playerOne;
@@ -30,11 +28,11 @@ public class Game implements InputHandler {
 
     public void init() {
         guards = new LinkedList<>();
-        collisionDetector = new ColisionDetector(guards);
 
-        playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, PLAYER_IMAGE, collisionDetector);
 
         level = Level.LEVEL1;
+        collisionDetector = new ColisionDetector(guards, level.getQueen(), level.getKey());
+        playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, PLAYER_IMAGE, collisionDetector);
 
         for (int i = 0; i < 3; i += 1) {
             guards.add(new Guards(GUARD_IMAGE, collisionDetector));
@@ -51,8 +49,20 @@ public class Game implements InputHandler {
         }
 
         while (!playerOne.isGameOver()) {
-            if (playerOne.isCaught()){
+            if (playerOne.isCaught()) {
                 resetPlayer();
+            }
+            if (collisionDetector.hitKey(playerOne)) {
+                playerOne.pickKey();
+                level.keyPicked();
+            }
+            if (collisionDetector.hitsQueen(playerOne)) {
+                if (playerOne.hasKey()) {
+                    resetPlayer();
+
+                    initNextLevelWalls();
+
+                }
             }
             movePlayers();
             moveGuards();
@@ -73,6 +83,7 @@ public class Game implements InputHandler {
     private void movePlayers() {
         playerOne.move();
 
+
     }
 
     private void moveGuards() {
@@ -83,6 +94,15 @@ public class Game implements InputHandler {
             guard.move();
 
         }
+    }
+
+    public void initNextLevelWalls(){
+        level.hide();
+        level = level.getNext();
+        collisionDetector = new ColisionDetector(guards, level.getQueen(), level.getKey());
+        collisionDetector.setWalls(level.getWalls());
+        playerOne.setColisionDetector(collisionDetector);
+        level.show();
     }
 
     public void resetGame() {
@@ -97,7 +117,7 @@ public class Game implements InputHandler {
         level = Level.LEVEL1;
     }
 
-    public void resetPlayer(){
+    public void resetPlayer() {
         playerOne.reset(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y);
         playerOne.show();
 

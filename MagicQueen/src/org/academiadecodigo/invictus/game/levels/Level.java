@@ -4,10 +4,8 @@ import org.academiadecodigo.invictus.game.Game;
 import org.academiadecodigo.invictus.game.representable.Key;
 import org.academiadecodigo.invictus.game.representable.Queen;
 import org.academiadecodigo.invictus.game.representable.Representable;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -62,6 +60,11 @@ public enum Level {
                             queen = new Queen(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, ROGER_TAYLOR_PATH));
                         }
                     }
+                    if (path.contains("level2")) {
+                        if (chars[i].equals("3")) {
+                            queen = new Queen(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, ROGER_TAYLOR_PATH));
+                        }
+                    }
                 }
             }
 
@@ -73,20 +76,21 @@ public enum Level {
     public void show() {
         for (Representable wall : walls) {
             wall.show();
+        }
             queen.show();
             key.show();
-        }
     }
 
     public void hide() {
         for (Representable wall : walls) {
             wall.hide();
+        }
             queen.hide();
             key.hide();
-        }
     }
 
     public Level getNext() {
+        walls.clear();
         return values()[ordinal() + 1 == values().length ? 0 : ordinal() + 1];
     }
 
@@ -98,7 +102,11 @@ public enum Level {
         return queen;
     }
 
-    public Key getKey(){
+    public Key getKey() {
         return key;
+    }
+
+    public void keyPicked() {
+        key.hide();
     }
 }
