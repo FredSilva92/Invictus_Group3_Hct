@@ -28,6 +28,7 @@ public enum Level {
     private static final String PORTAL_PATH = "assets/portal.png";
     private static final int WALL_SIZE = 24;
     private List<Representable> walls;
+    private List<FakeWall> fakeWalls;
     private Queen queen;
     private Key key;
     private Portal portal;
@@ -38,6 +39,7 @@ public enum Level {
 
     Level(String path) {
         walls = new LinkedList<Representable>();
+        fakeWalls = new LinkedList<FakeWall>();
         load(FILE_PATH + path);
     }
 
@@ -51,11 +53,10 @@ public enum Level {
 
                 for (int i = 0; i < chars.length; i++) {
                     if (chars[i].equals("1")) {
-                        walls.add(new Representable(new Picture(
-                                Game.PADDING + i * WALL_SIZE,
-                                Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE,
-                                BRICK_IMAGE_PATH
-                        )));
+                        Representable wall = new Representable(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, BRICK_IMAGE_PATH));
+                        wall.setRepresentation(new Picture(
+                                Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, BRICK_IMAGE_PATH));
+                        walls.add(wall);
                     }
                     if (chars[i].equals("4")) {
                         key = new Key(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, KEY_PATH));
@@ -63,19 +64,37 @@ public enum Level {
                     if (chars[i].equals("5")) {
                         wizard = new Wizard(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, WIZARD_PATH));
                     }
-                    if (chars[i].equals("6")) {
-                        portalX = Game.PADDING + i * WALL_SIZE;
-                        portalY = Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE;
-                        portal = new Portal(new Picture(portalX, portalY, PORTAL_PATH));
+                    if (path.contains("level1")) {
+                        if (chars[i].equals("6")) {
+                            FakeWall fakeWall = new FakeWall(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, BRICK_IMAGE_PATH));
+                            fakeWalls.add(fakeWall);
+
+                        }
+                    }
+                    if (path.contains("level2")) {
+                        if (chars[i].equals("6")) {
+                            FakeWall fakeWall = new FakeWall(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, BRICK_IMAGE_PATH));
+                            fakeWalls.add(fakeWall);
+                        }
                     }
                     if (path.contains("level1")) {
                         if (chars[i].equals("3")) {
                             queen = new Queen(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, ROGER_TAYLOR_PATH));
+                            portalX = Game.PADDING + i * WALL_SIZE;
+                            portalY = Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE;
+                            portal = new Portal(new Picture(portalX, portalY, PORTAL_PATH));
                         }
+                    }
+                    if (chars[i].equals("8")) {
+                        FakeWall fakeWall = new FakeWall(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, BRICK_IMAGE_PATH));
+                        fakeWalls.add(fakeWall);
                     }
                     if (path.contains("level2")) {
                         if (chars[i].equals("3")) {
                             queen = new Queen(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, BRIAN_MAY_PATH));
+                            portalX = Game.PADDING + i * WALL_SIZE;
+                            portalY = Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE;
+                            portal = new Portal(new Picture(portalX, portalY, PORTAL_PATH));
                         }
                     }
                 }
@@ -90,20 +109,25 @@ public enum Level {
         for (Representable wall : walls) {
             wall.show();
         }
-            queen.show();
-            key.show();
-            portal.show();
-            wizard.show();
+        for (FakeWall wall : fakeWalls) {
+            wall.show();
+        }
+        queen.show();
+        key.show();
+        wizard.show();
     }
 
     public void hide() {
         for (Representable wall : walls) {
             wall.hide();
         }
-            queen.hide();
-            key.hide();
-            portal.hide();
-            wizard.hide();
+        for (FakeWall wall : fakeWalls) {
+            wall.delete();
+        }
+        queen.hide();
+        key.hide();
+        portal.hide();
+        wizard.hide();
     }
 
     public Level getNext() {

@@ -4,7 +4,9 @@ import org.academiadecodigo.invictus.game.levels.Level;
 import org.academiadecodigo.invictus.game.representable.*;
 import org.academiadecodigo.invictus.keyboard.InputHandler;
 import org.academiadecodigo.invictus.keyboard.Key;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.awt.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +21,7 @@ public class Game implements InputHandler {
     private static final String GUARD_IMAGE = "resources/assets/guard.png";
     private static final int PLAYER_ONE_INITIAL_X = 50;
     private static final int PLAYER_ONE_INITIAL_Y = 50;
+    private static final int NUM_GUARDS = 3;
 
     private ColisionDetector collisionDetector;
     private Player playerOne;
@@ -29,6 +32,7 @@ public class Game implements InputHandler {
 
     public void init() {
         guards = new LinkedList<>();
+        playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, PLAYER_IMAGE, collisionDetector);
 
         level = Level.LEVEL1;
         queen = level.getQueen();
@@ -36,19 +40,21 @@ public class Game implements InputHandler {
         collisionDetector = new ColisionDetector(guards, level.getQueen(), level.getKey(), level.getPortal(), level.getWizard());
         playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, PLAYER_IMAGE, collisionDetector);
 
-        for (int i = 0; i < 3; i += 1) {
-            guards.add(new Guards(GUARD_IMAGE, collisionDetector));
-        }
     }
 
     public void start() {
         initWalls();
 
+        createGuards(level);
+
         playerOne.show();
 
+
+/*
         for (Guards guard : guards) {
             guard.show();
         }
+        */
 
         while (!playerOne.isGameOver()) {
             if (playerOne.isCaught()) {
@@ -66,11 +72,13 @@ public class Game implements InputHandler {
 
                 }
             }
-            if(collisionDetector.hitsPortal(playerOne)) {
+            if (collisionDetector.hitsPortal(playerOne)) {
+
                 playerOne.teleport(queen.getRepresentation().getX(), queen.getRepresentation().getY());
             }
 
-            if(collisionDetector.hitsWizard(playerOne)) {
+            if (collisionDetector.hitsWizard(playerOne)) {
+                portal.show();
                 playerOne.teleport(portal.getRepresentation().getX(), portal.getRepresentation().getY());
             }
             movePlayers();
@@ -82,6 +90,35 @@ public class Game implements InputHandler {
                 System.err.println(e.getMessage());
             }
         }
+    }
+
+    private void createGuards(Level level) {
+        for (int i = 0; i < NUM_GUARDS; i += 1) {
+
+            Point point = getNewPoint();
+            Guards guard = new Guards(new Picture( point.getX(), point.getY(), GUARD_IMAGE),collisionDetector);
+
+            boolean test = true;
+            while (test) {
+                point = getNewPoint();
+
+                guard.setRepresentation(new Picture(point.getX(), point.getY(), GUARD_IMAGE));
+                if (!guard.overlaps(level.getWalls())) {
+                    test = false;
+                }
+            }
+            guards.add(guard);
+            guard.show();
+        }
+
+    }
+
+
+    private Point getNewPoint() {
+
+        int temp_x = (int) (Math.random() * (Game.WIDTH - PADDING - Game.PADDING)) + Game.PADDING * 3;
+        int temp_y = (int) (Math.random() * (Game.HEIGHT - PADDING - Game.PADDING)) + Game.PADDING;
+        return new Point(temp_x, temp_y);
     }
 
     private void initWalls() {
@@ -105,7 +142,7 @@ public class Game implements InputHandler {
         }
     }
 
-    public void initNextLevelWalls(){
+    public void initNextLevelWalls() {
         level.hide();
         level = level.getNext();
         collisionDetector = new ColisionDetector(guards, level.getQueen(), level.getKey(), level.getPortal(), level.getWizard());
@@ -123,7 +160,9 @@ public class Game implements InputHandler {
         }
 
         guards.clear();
-        level = Level.LEVEL1;
+        level = Level.LEVEL2;
+        collisionDetector.setWalls(level.getWalls());
+        createGuards(level);
     }
 
     public void resetPlayer() {
@@ -193,5 +232,10 @@ public class Game implements InputHandler {
                 break;
 */
         }
+
+    }
+
+    public Level getLevel() {
+        return level;
     }
 }

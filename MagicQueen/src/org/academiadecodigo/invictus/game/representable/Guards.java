@@ -4,17 +4,23 @@ import org.academiadecodigo.invictus.game.ColisionDetector;
 import org.academiadecodigo.invictus.game.Direction;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.awt.*;
+
 public class Guards extends Representable {
 
-    private static final int SPEED = 1;
-    private Direction direction;
+    private static final int SPEED = 7;
     private ColisionDetector colisionDetector;
-    Direction currentDirection;
+    private Direction currentDirection;
+    private Point point;
 
-    public Guards(String imagePath, ColisionDetector colisionDetector) {
-        super(new Picture(400, 400, imagePath));//dps mudar para sitios aleatorios
+    public Guards(Picture representation, ColisionDetector colisionDetector) {
+        super(representation);
         this.colisionDetector = colisionDetector;
-        currentDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
+        this.currentDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
+    }
+
+    public void setPoint(Point point) {
+        this.point = point;
     }
 
     public void move() {
@@ -22,36 +28,35 @@ public class Guards extends Representable {
     }
 
     public void walk() {
-//        direction = Direction.values()[(int) (Math.random() * Direction.values().length)];
 
 
         switch (chooseDirection()) {
             case UP:
                 representation.translate(0, -SPEED);
                 if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
-                    representation.translate(0, SPEED);
                     currentDirection = currentDirection.oppositeDirection();
+                    representation.translate(0, SPEED);
                 }
                 break;
             case DOWN:
                 representation.translate(0, SPEED);
                 if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
-                    representation.translate(0, -SPEED);
                     currentDirection = currentDirection.oppositeDirection();
+                    representation.translate(0, -SPEED);
                 }
                 break;
             case LEFT:
                 representation.translate(-SPEED, 0);
                 if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
-                    representation.translate(SPEED, 0);
                     currentDirection = currentDirection.oppositeDirection();
+                    representation.translate(SPEED, 0);
                 }
                 break;
             case RIGHT:
                 representation.translate(SPEED, 0);
                 if (colisionDetector.hitsWall(this) || isOutOfBounds()) {
-                    representation.translate(-SPEED, 0);
                     currentDirection = currentDirection.oppositeDirection();
+                    representation.translate(-SPEED, 0);
                 }
                 break;
         }
@@ -63,12 +68,11 @@ public class Guards extends Representable {
         Direction newDirection = currentDirection;
 
         // Sometimes, we want to change direction...
-        if (Math.random() > 0.0) {
+        if (Math.random() > 0.6) {
             newDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
-        }
-
-        if (newDirection.isOpposite(currentDirection)) {
-            return chooseDirection();
+            if (newDirection.isOpposite(currentDirection)) {
+                return chooseDirection();
+            }
         }
 
         return newDirection;

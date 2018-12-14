@@ -17,6 +17,7 @@ public class Player extends Representable {
     public Player(int x, int y, String imagePath, ColisionDetector colisionDetector) {
         super(new Picture(x, y, imagePath));
 
+        representation = new Picture(x, y, imagePath);
         this.colisionDetector = colisionDetector;
         caught = false;
         key = false;

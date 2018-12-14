@@ -22,6 +22,9 @@ public class ColisionDetector {
         this.wizard = wizard;
     }
 
+    public void setWalls(List<Representable> walls) {
+        this.walls = walls;
+    }
     public boolean hitsGuard(Representable representable) {
         return check(guards, representable);
     }
@@ -60,7 +63,7 @@ public class ColisionDetector {
 
     private boolean check(List<? extends Representable> representables, Representable target) {
         for (Representable other : representables) {
-            if (other.overlaps(target)) {
+            if (target.overlaps(other)) {
                 return true;
             }
         }
@@ -68,7 +71,5 @@ public class ColisionDetector {
         return false;
     }
 
-    public void setWalls(List<Representable> walls) {
-        this.walls = walls;
-    }
+
 }
