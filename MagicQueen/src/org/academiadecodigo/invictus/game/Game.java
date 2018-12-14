@@ -16,9 +16,12 @@ public class Game implements InputHandler {
     public static final int WIDTH = 1500;
     public static final int HEIGHT = 850;
 
-    private static final String PLAYER_IMAGE = "assets/fan.png";
+    private static final String PLAYER_IMAGE = "resources/assets/fan.png";
+    private static final String GUARD_IMAGE = "resources/assets/guard.png";
     private static final int PLAYER_ONE_INITIAL_X = 50;
     private static final int PLAYER_ONE_INITIAL_Y = 50;
+//    private static final int GUARD_ONE_INITIAL_X = 50;
+//    private static final int GUARD_ONE_INITIAL_Y = 50;
 
     private ColisionDetector collisionDetector;
     private Player playerOne;
@@ -26,19 +29,31 @@ public class Game implements InputHandler {
     private Level level;
 
     public void init() {
-        guards = new LinkedList<Guards>();
+        guards = new LinkedList<>();
         collisionDetector = new ColisionDetector(guards);
 
         playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, PLAYER_IMAGE, collisionDetector);
 
         level = Level.LEVEL1;
+
+        for (int i = 0; i < 3; i += 1) {
+            guards.add(new Guards(GUARD_IMAGE, collisionDetector));
+        }
     }
 
-    public void start(){
+    public void start() {
         initWalls();
 
         playerOne.show();
-        while (!playerOne.isCaught()) {
+
+        for (Guards guard : guards) {
+            guard.show();
+        }
+
+        while (!playerOne.isGameOver()) {
+            if (playerOne.isCaught()){
+                resetPlayer();
+            }
             movePlayers();
             moveGuards();
 
@@ -51,6 +66,7 @@ public class Game implements InputHandler {
     }
 
     private void initWalls() {
+        level = level.getNext();
         collisionDetector.setWalls(level.getWalls());
         level.show();
     }
@@ -70,7 +86,8 @@ public class Game implements InputHandler {
         }
     }
 
-    public void reset() {
+    public void resetGame() {
+
         playerOne.reset(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y);
 
         for (Guards guard : guards) {
@@ -78,7 +95,13 @@ public class Game implements InputHandler {
         }
 
         guards.clear();
-        level.hide();
+        level = Level.LEVEL1;
+    }
+
+    public void resetPlayer(){
+        playerOne.reset(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y);
+        playerOne.show();
+
     }
 
     public void press(Key key) {
@@ -116,7 +139,9 @@ public class Game implements InputHandler {
 
     }
 
+
     public void release(Key key) {
+
         switch (key) {
             case UP:
                 playerOne.setDirection(null);
@@ -130,7 +155,7 @@ public class Game implements InputHandler {
             case LEFT:
                 playerOne.setDirection(null);
                 break;
-                /*
+/*
             case W:
             case S:
                 playerTwo.setDirection(null);
@@ -139,7 +164,10 @@ public class Game implements InputHandler {
             case D:
                 playerTwo.setRotation(null);
                 break;
-                */
+*/
         }
+
     }
+
+
 }

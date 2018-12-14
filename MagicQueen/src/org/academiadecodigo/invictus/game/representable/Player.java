@@ -7,10 +7,11 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player extends Representable {
 
-    private static final int SPEED = 5;
+    private static final int SPEED = 4;
     private ColisionDetector colisionDetector;
     private boolean key;
     private boolean caught;
+    private boolean gameOver;
     private Direction direction;
 
     public Player(int x, int y, String imagePath, ColisionDetector colisionDetector) {
@@ -26,6 +27,7 @@ public class Player extends Representable {
         representation.translate(x - representation.getX(), y - representation.getY());
         caught = false;
         direction = null;
+
     }
 
     public void move() {
@@ -88,6 +90,7 @@ public class Player extends Representable {
         this.direction = direction;
     }
 
-
-
+    public boolean isGameOver() {
+        return gameOver;
+    }
 }

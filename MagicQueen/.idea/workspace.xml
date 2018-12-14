@@ -2,31 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d542915-c623-48e1-b8d5-d2f4ea03794c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/assets/BrianMay.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/assets/Freddie Mercury.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/assets/JohnDeacon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/assets/LiveTonight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/assets/RogerTaylor.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/assets/bodyguard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/assets/door.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/assets/fan.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/assets/portal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/assets/wall.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/assets/wizard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/levels/level1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/levels/level2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/levels/level3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MagicQueen.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MagicQueen.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/Game$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/levels/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/levels/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/fan.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/fan.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/wall.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/wall.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/level1" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/level1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/level2" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/level2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/Direction$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/representable/Wizard.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/representable/Wizard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/Manager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/Manager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/ColisionDetector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/ColisionDetector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/Direction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/Direction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/representable/Guards$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/representable/Guards$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/representable/Guards.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/representable/Guards.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/representable/Player$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/representable/Player$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/representable/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MagicQueen/org/academiadecodigo/invictus/game/representable/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/guard.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/guard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/wizard.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/wizard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/ColisionDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/ColisionDetector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/Direction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/levels/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/levels/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/representable/Guards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/representable/Guards.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/representable/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/representable/Player.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -98,16 +90,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/representable/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-              <folding>
-                <element signature="e#2241#2242#0" expanded="true" />
-                <element signature="e#2267#2268#0" expanded="true" />
-                <element signature="e#2296#2297#0" expanded="true" />
-                <element signature="e#2322#2323#0" expanded="true" />
-                <element signature="e#2375#2376#0" expanded="true" />
-                <element signature="e#2417#2418#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="120">
+              <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -115,12 +99,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/representable/Guards.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+            <state relative-caret-position="108">
+              <caret line="8" column="38" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#650#651#0" expanded="true" />
-                <element signature="e#672#673#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -148,8 +130,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="941">
-              <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
+            <state relative-caret-position="525">
+              <caret line="106" column="31" selection-start-line="106" selection-start-column="31" selection-end-line="106" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -224,23 +206,6 @@
             <path>
               <item name="MagicQueen" type="b2602c69:ProjectViewProjectNode" />
               <item name="MagicQueen" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MagicQueen" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MagicQueen" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MagicQueen" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MagicQueen" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="levels" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MagicQueen" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MagicQueen" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -291,7 +256,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544742358042" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544746051545" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -345,7 +310,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5226000" />
+    <option name="totallyTimeSpent" value="5230000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -426,23 +391,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/representable/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-          <folding>
-            <element signature="e#2241#2242#0" expanded="true" />
-            <element signature="e#2267#2268#0" expanded="true" />
-            <element signature="e#2296#2297#0" expanded="true" />
-            <element signature="e#2322#2323#0" expanded="true" />
-            <element signature="e#2375#2376#0" expanded="true" />
-            <element signature="e#2417#2418#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="120">
+          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/academiadecodigo/invictus/game/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="941">
-          <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
+        <state relative-caret-position="525">
+          <caret line="106" column="31" selection-start-line="106" selection-start-column="31" selection-end-line="106" selection-end-column="31" />
         </state>
       </provider>
     </entry>
