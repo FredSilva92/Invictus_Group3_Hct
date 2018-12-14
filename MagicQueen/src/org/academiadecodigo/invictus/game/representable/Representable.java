@@ -23,7 +23,7 @@ public class Representable implements Instantiables {
     }
 
     public void show() {
-        representation.draw();
+    representation.draw();
     }
 
     public void hide() {

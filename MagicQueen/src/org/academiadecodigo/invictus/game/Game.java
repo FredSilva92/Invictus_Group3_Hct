@@ -21,6 +21,8 @@ public class Game implements InputHandler {
 
     private static final String PLAYER_IMAGE = "resources/assets/fan.png";
     private static final String GUARD_IMAGE = "resources/assets/guard.png";
+    private static final String ROGER_TAYLOR_AUTO = "resources/assets/Roger-Taylor-auto.png";
+    private static final String BRIAN_MAY_AUTO = "resources/assets/Brian-may-auto.png";
     private static final int PLAYER_ONE_INITIAL_X = 50;
     private static final int PLAYER_ONE_INITIAL_Y = 50;
     private static final int NUM_GUARDS = 3;
@@ -78,6 +80,14 @@ public class Game implements InputHandler {
 
         while (!playerOne.isGameOver()) {
             if (playerOne.isCaught()) {
+                if (level == Level.LEVEL1) {
+                    Picture rogerTaylor = new Picture(0, 0, ROGER_TAYLOR_AUTO);
+                    rogerTaylor.draw();
+                }
+                else if (level == Level.LEVEL2) {
+                    Picture brianMay = new Picture(0, 0, BRIAN_MAY_AUTO);
+                    brianMay.draw();
+                }
                 resetPlayer();
             }
             movePlayers();
@@ -91,14 +101,14 @@ public class Game implements InputHandler {
         }
     }
 
-    private void createGuards(Level level){
+    private void createGuards(Level level) {
         for (int i = 0; i < NUM_GUARDS; i += 1) {
 
             Guards guard = new Guards(GUARD_IMAGE, collisionDetector);
 
             boolean test = false;
 
-            while (!test){
+            while (!test) {
                 Point point = getNewPoint();
                 guard.setRepresentation(new Picture(point.getX(), point.getY(), GUARD_IMAGE));
                 for (Representable wall : level.getWalls()) {
@@ -143,11 +153,13 @@ public class Game implements InputHandler {
 
     public void resetGame() {
 
+
         playerOne.reset(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y);
 
         for (Guards guard : guards) {
             guard.hide();
         }
+
 
         guards.clear();
         level = Level.LEVEL2;
