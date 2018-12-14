@@ -21,11 +21,11 @@ public class Game implements InputHandler {
     private static final String GUARD_IMAGE = "resources/assets/guard.png";
     private static final int PLAYER_ONE_INITIAL_X = 50;
     private static final int PLAYER_ONE_INITIAL_Y = 50;
-    private static final int NUM_GUARDS = 3;
+    private static final int NUM_GUARDS = 5;
 
     private ColisionDetector collisionDetector;
     private Player playerOne;
-    private List<Guards> guards;
+    private List<Guard> guards;
     private Level level;
     private Queen queen;
     private Portal portal;
@@ -51,7 +51,7 @@ public class Game implements InputHandler {
 
 
 /*
-        for (Guards guard : guards) {
+        for (Guard guard : guards) {
             guard.show();
         }
         */
@@ -70,10 +70,10 @@ public class Game implements InputHandler {
 
                     initNextLevelWalls();
 
+
                 }
             }
             if (collisionDetector.hitsPortal(playerOne)) {
-
                 playerOne.teleport(queen.getRepresentation().getX(), queen.getRepresentation().getY());
             }
 
@@ -96,7 +96,7 @@ public class Game implements InputHandler {
         for (int i = 0; i < NUM_GUARDS; i += 1) {
 
             Point point = getNewPoint();
-            Guards guard = new Guards(new Picture( point.getX(), point.getY(), GUARD_IMAGE),collisionDetector);
+            Guard guard = new Guard(new Picture( point.getX(), point.getY(), GUARD_IMAGE),collisionDetector);
 
             boolean test = true;
             while (test) {
@@ -133,10 +133,10 @@ public class Game implements InputHandler {
     }
 
     private void moveGuards() {
-        Iterator<Guards> iterator = guards.iterator();
+        Iterator<Guard> iterator = guards.iterator();
 
         while (iterator.hasNext()) {
-            Guards guard = iterator.next();
+            Guard guard = iterator.next();
             guard.move();
 
         }
@@ -147,6 +147,9 @@ public class Game implements InputHandler {
         level = level.getNext();
         collisionDetector = new ColisionDetector(guards, level.getQueen(), level.getKey(), level.getPortal(), level.getWizard());
         collisionDetector.setWalls(level.getWalls());
+        for (Guard guard : guards){
+            guard.setColisionDetector(collisionDetector);
+        }
         playerOne.setColisionDetector(collisionDetector);
         level.show();
     }
@@ -155,7 +158,7 @@ public class Game implements InputHandler {
 
         playerOne.reset(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y);
 
-        for (Guards guard : guards) {
+        for (Guard guard : guards) {
             guard.hide();
         }
 

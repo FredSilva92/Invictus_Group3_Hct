@@ -6,14 +6,14 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.awt.*;
 
-public class Guards extends Representable {
+public class Guard extends Representable {
 
     private static final int SPEED = 7;
     private ColisionDetector colisionDetector;
     private Direction currentDirection;
     private Point point;
 
-    public Guards(Picture representation, ColisionDetector colisionDetector) {
+    public Guard(Picture representation, ColisionDetector colisionDetector) {
         super(representation);
         this.colisionDetector = colisionDetector;
         this.currentDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
@@ -79,5 +79,7 @@ public class Guards extends Representable {
 
     }
 
-
+    public void setColisionDetector(ColisionDetector colisionDetector) {
+        this.colisionDetector = colisionDetector;
+    }
 }

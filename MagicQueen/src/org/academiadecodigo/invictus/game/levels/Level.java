@@ -68,6 +68,10 @@ public enum Level {
                         if (chars[i].equals("6")) {
                             FakeWall fakeWall = new FakeWall(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, BRICK_IMAGE_PATH));
                             fakeWalls.add(fakeWall);
+                            portalX = Game.PADDING + i * WALL_SIZE;
+                            portalY = Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE;
+                            portal = new Portal(new Picture(portalX, portalY, PORTAL_PATH));
+
 
                         }
                     }
@@ -75,14 +79,16 @@ public enum Level {
                         if (chars[i].equals("6")) {
                             FakeWall fakeWall = new FakeWall(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, BRICK_IMAGE_PATH));
                             fakeWalls.add(fakeWall);
+                            portalX = Game.PADDING + i * WALL_SIZE;
+                            portalY = Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE;
+                            portal = new Portal(new Picture(portalX, portalY, PORTAL_PATH));
                         }
                     }
                     if (path.contains("level1")) {
                         if (chars[i].equals("3")) {
                             queen = new Queen(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, ROGER_TAYLOR_PATH));
-                            portalX = Game.PADDING + i * WALL_SIZE;
-                            portalY = Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE;
-                            portal = new Portal(new Picture(portalX, portalY, PORTAL_PATH));
+
+
                         }
                     }
                     if (chars[i].equals("8")) {
@@ -92,9 +98,7 @@ public enum Level {
                     if (path.contains("level2")) {
                         if (chars[i].equals("3")) {
                             queen = new Queen(new Picture(Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, BRIAN_MAY_PATH));
-                            portalX = Game.PADDING + i * WALL_SIZE;
-                            portalY = Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE;
-                            portal = new Portal(new Picture(portalX, portalY, PORTAL_PATH));
+
                         }
                     }
                 }

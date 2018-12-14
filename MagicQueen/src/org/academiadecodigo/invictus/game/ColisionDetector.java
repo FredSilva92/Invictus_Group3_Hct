@@ -2,19 +2,18 @@ package org.academiadecodigo.invictus.game;
 
 import org.academiadecodigo.invictus.game.representable.*;
 
-import javax.sound.sampled.Port;
 import java.util.List;
 
 public class ColisionDetector {
 
-    private List<Guards> guards;
+    private List<Guard> guards;
     private List<Representable> walls;
     private Queen queen;
     private Key key;
     private Portal portal;
     private Wizard wizard;
 
-    public ColisionDetector(List<Guards> guards, Queen queen, Key key, Portal portal, Wizard wizard) {
+    public ColisionDetector(List<Guard> guards, Queen queen, Key key, Portal portal, Wizard wizard) {
         this.guards = guards;
         this.queen = queen;
         this.key = key;
