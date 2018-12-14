@@ -70,7 +70,7 @@ public class Guards extends Representable {
         Direction newDirection = currentDirection;
 
         // Sometimes, we want to change direction...
-        if (Math.random() > 0.3) {
+        if (Math.random() > 0.6) {
             newDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
         }
 

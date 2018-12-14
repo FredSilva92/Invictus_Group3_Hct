@@ -23,6 +23,7 @@ public class Game implements InputHandler {
     private static final String GUARD_IMAGE = "resources/assets/guard.png";
     private static final int PLAYER_ONE_INITIAL_X = 50;
     private static final int PLAYER_ONE_INITIAL_Y = 50;
+    private static final int NUM_GUARDS = 3;
 //    private static final int GUARD_ONE_INITIAL_X = 50;
 //    private static final int GUARD_ONE_INITIAL_Y = 50;
 
@@ -46,6 +47,8 @@ public class Game implements InputHandler {
 
         playerOne.show();
 
+        /*
+
         for (int i = 0; i < 3; i += 1) {
 
             Guards guard = new Guards(GUARD_IMAGE, collisionDetector);
@@ -65,6 +68,8 @@ public class Game implements InputHandler {
             guards.add(guard);
             guard.show();
         }
+        */
+        createGuards(level);
 
 /*
         for (Guards guard : guards) {
@@ -86,6 +91,28 @@ public class Game implements InputHandler {
         }
     }
 
+    private void createGuards(Level level){
+        for (int i = 0; i < NUM_GUARDS; i += 1) {
+
+            Guards guard = new Guards(GUARD_IMAGE, collisionDetector);
+
+            boolean test = false;
+
+            while (!test){
+                Point point = getNewPoint();
+                guard.setRepresentation(new Picture(point.getX(), point.getY(), GUARD_IMAGE));
+                for (Representable wall : level.getWalls()) {
+                    if (!guard.overlaps(wall)) {
+                        test = true;
+                    }
+                }
+            }
+
+            guards.add(guard);
+            guard.show();
+        }
+    }
+
     private Point getNewPoint() {
 
         int temp_x = (int) (Math.random() * Game.WIDTH);
@@ -95,7 +122,6 @@ public class Game implements InputHandler {
     }
 
     private void initWalls() {
-        level = level.getNext();
         collisionDetector.setWalls(level.getWalls());
         level.show();
     }
@@ -124,7 +150,9 @@ public class Game implements InputHandler {
         }
 
         guards.clear();
-        level = Level.LEVEL1;
+        level = Level.LEVEL2;
+        collisionDetector.setWalls(level.getWalls());
+        createGuards(level);
     }
 
     public void resetPlayer() {
