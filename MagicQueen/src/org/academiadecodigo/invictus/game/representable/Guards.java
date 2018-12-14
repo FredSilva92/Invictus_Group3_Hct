@@ -2,20 +2,40 @@ package org.academiadecodigo.invictus.game.representable;
 
 import org.academiadecodigo.invictus.game.ColisionDetector;
 import org.academiadecodigo.invictus.game.Direction;
+import org.academiadecodigo.invictus.game.Game;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
+import java.awt.*;
 
 public class Guards extends Representable {
 
-    private static final int SPEED = 1;
+    private static final int SPEED = 7;
     private Direction direction;
     private ColisionDetector colisionDetector;
     Direction currentDirection;
 
     public Guards(String imagePath, ColisionDetector colisionDetector) {
+
         super(new Picture(400, 400, imagePath));//dps mudar para sitios aleatorios
         this.colisionDetector = colisionDetector;
+
+        do {
+            Point point = getNewPoint();
+            this.getRepresentation().translate(point.getX(), point.getY());
+        } while (!this.colisionDetector.hitsWall(this));
+
+
         currentDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
     }
+
+    private Point getNewPoint() {
+
+        int temp_x = (int) (Math.random() * Game.WIDTH);
+        int temp_y = (int) (Math.random() * Game.HEIGHT);
+
+        return new Point(temp_x, temp_y);
+    }
+
 
     public void move() {
         walk();
@@ -63,7 +83,7 @@ public class Guards extends Representable {
         Direction newDirection = currentDirection;
 
         // Sometimes, we want to change direction...
-        if (Math.random() > 0.0) {
+        if (Math.random() > 0.3) {
             newDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
         }
 

@@ -13,6 +13,10 @@ public class Representable implements Instantiables {
 
     }
 
+    public Picture getRepresentation() {
+        return representation;
+    }
+
     public void show() {
         representation.draw();
     }

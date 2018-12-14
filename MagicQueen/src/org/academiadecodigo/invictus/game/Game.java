@@ -36,15 +36,16 @@ public class Game implements InputHandler {
 
         level = Level.LEVEL1;
 
-        for (int i = 0; i < 3; i += 1) {
-            guards.add(new Guards(GUARD_IMAGE, collisionDetector));
-        }
     }
 
     public void start() {
         initWalls();
 
         playerOne.show();
+
+        for (int i = 0; i < 3; i += 1) {
+            guards.add(new Guards(GUARD_IMAGE, collisionDetector));
+        }
 
         for (Guards guard : guards) {
             guard.show();
