@@ -66,7 +66,6 @@ public class Game implements InputHandler {
     }
 
     private void initWalls() {
-        level = level.getNext();
         collisionDetector.setWalls(level.getWalls());
         level.show();
     }
