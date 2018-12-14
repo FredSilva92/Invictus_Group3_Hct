@@ -14,6 +14,9 @@ public class ColisionDetector {
         this.guards = guards;
     }
 
+    public void setWalls(List<Representable> walls) {
+        this.walls = walls;
+    }
     public boolean hitsGuard(Representable representable) {
         return check(guards, representable);
     }
@@ -32,7 +35,5 @@ public class ColisionDetector {
         return false;
     }
 
-    public void setWalls(List<Representable> walls) {
-        this.walls = walls;
-    }
+
 }

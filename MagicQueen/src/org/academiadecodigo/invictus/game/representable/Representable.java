@@ -7,10 +7,15 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Representable implements Instantiables {
 
     protected Picture representation;
-
+/*
     public Representable(Picture representation) {
         this.representation = representation;
 
+    }
+    */
+
+    public void setRepresentation(Picture representation) {
+        this.representation = representation;
     }
 
     public Picture getRepresentation() {

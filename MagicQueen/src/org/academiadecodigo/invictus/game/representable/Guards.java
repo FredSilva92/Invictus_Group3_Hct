@@ -13,29 +13,16 @@ public class Guards extends Representable {
     private Direction direction;
     private ColisionDetector colisionDetector;
     Direction currentDirection;
+    private Point point;
 
     public Guards(String imagePath, ColisionDetector colisionDetector) {
-
-        super(new Picture(400, 400, imagePath));//dps mudar para sitios aleatorios
         this.colisionDetector = colisionDetector;
-
-        do {
-            Point point = getNewPoint();
-            this.getRepresentation().translate(point.getX(), point.getY());
-        } while (!this.colisionDetector.hitsWall(this));
-
-
         currentDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
     }
 
-    private Point getNewPoint() {
-
-        int temp_x = (int) (Math.random() * Game.WIDTH);
-        int temp_y = (int) (Math.random() * Game.HEIGHT);
-
-        return new Point(temp_x, temp_y);
+    public void setPoint(Point point) {
+        this.point = point;
     }
-
 
     public void move() {
         walk();

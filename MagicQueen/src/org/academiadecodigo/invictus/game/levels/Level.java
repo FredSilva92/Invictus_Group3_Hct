@@ -39,11 +39,10 @@ public enum Level {
 
                 for (int i = 0; i < chars.length; i++) {
                     if (chars[i].equals("1")) {
-                        walls.add(new Representable(new Picture(
-                                Game.PADDING + i * WALL_SIZE,
-                                Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE,
-                                BRICK_IMAGE_PATH
-                        )));
+                        Representable wall = new Representable();
+                        wall.setRepresentation(new Picture(
+                                Game.PADDING + i * WALL_SIZE, Game.PADDING + (reader.getLineNumber() - 1) * WALL_SIZE, BRICK_IMAGE_PATH));
+                        walls.add(wall);
                     }
                 }
             }
