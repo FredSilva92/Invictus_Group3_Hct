@@ -1,8 +1,7 @@
 package org.academiadecodigo.invictus.game;
 
 import org.academiadecodigo.invictus.game.levels.Level;
-import org.academiadecodigo.invictus.game.representable.Guards;
-import org.academiadecodigo.invictus.game.representable.Player;
+import org.academiadecodigo.invictus.game.representable.*;
 import org.academiadecodigo.invictus.keyboard.InputHandler;
 import org.academiadecodigo.invictus.keyboard.Key;
 
@@ -25,13 +24,16 @@ public class Game implements InputHandler {
     private Player playerOne;
     private List<Guards> guards;
     private Level level;
+    private Queen queen;
+    private Portal portal;
 
     public void init() {
         guards = new LinkedList<>();
 
-
         level = Level.LEVEL1;
-        collisionDetector = new ColisionDetector(guards, level.getQueen(), level.getKey());
+        queen = level.getQueen();
+        portal = level.getPortal();
+        collisionDetector = new ColisionDetector(guards, level.getQueen(), level.getKey(), level.getPortal(), level.getWizard());
         playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, PLAYER_IMAGE, collisionDetector);
 
         for (int i = 0; i < 3; i += 1) {
@@ -52,7 +54,7 @@ public class Game implements InputHandler {
             if (playerOne.isCaught()) {
                 resetPlayer();
             }
-            if (collisionDetector.hitKey(playerOne)) {
+            if (collisionDetector.hitsKey(playerOne)) {
                 playerOne.pickKey();
                 level.keyPicked();
             }
@@ -63,6 +65,13 @@ public class Game implements InputHandler {
                     initNextLevelWalls();
 
                 }
+            }
+            if(collisionDetector.hitsPortal(playerOne)) {
+                playerOne.teleport(queen.getRepresentation().getX(), queen.getRepresentation().getY());
+            }
+
+            if(collisionDetector.hitsWizard(playerOne)) {
+                playerOne.teleport(portal.getRepresentation().getX(), portal.getRepresentation().getY());
             }
             movePlayers();
             moveGuards();
@@ -99,7 +108,7 @@ public class Game implements InputHandler {
     public void initNextLevelWalls(){
         level.hide();
         level = level.getNext();
-        collisionDetector = new ColisionDetector(guards, level.getQueen(), level.getKey());
+        collisionDetector = new ColisionDetector(guards, level.getQueen(), level.getKey(), level.getPortal(), level.getWizard());
         collisionDetector.setWalls(level.getWalls());
         playerOne.setColisionDetector(collisionDetector);
         level.show();
@@ -120,7 +129,6 @@ public class Game implements InputHandler {
     public void resetPlayer() {
         playerOne.reset(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y);
         playerOne.show();
-
     }
 
     public void press(Key key) {
@@ -185,8 +193,5 @@ public class Game implements InputHandler {
                 break;
 */
         }
-
     }
-
-
 }

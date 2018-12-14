@@ -31,6 +31,11 @@ public class Player extends Representable {
 
     }
 
+    public void teleport(int x,int y){
+        representation.translate(x - representation.getX(), y - representation.getY());
+        key=true;
+    }
+
     public void move() {
         walk();
 

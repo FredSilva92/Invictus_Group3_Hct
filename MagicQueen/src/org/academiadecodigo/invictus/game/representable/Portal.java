@@ -2,11 +2,11 @@ package org.academiadecodigo.invictus.game.representable;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Wizard extends Representable {
+public class Portal extends Representable {
 
     private Picture representation;
 
-    public Wizard(Picture representation) {
+    public Portal(Picture representation) {
         super(representation);
         this.representation = representation;
     }
