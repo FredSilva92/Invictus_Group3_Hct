@@ -58,7 +58,7 @@ public class Game implements InputHandler {
             moveGuards();
 
             try {
-                Thread.sleep(20);
+                Thread.sleep(80);
             } catch (InterruptedException e) {
                 System.err.println(e.getMessage());
             }

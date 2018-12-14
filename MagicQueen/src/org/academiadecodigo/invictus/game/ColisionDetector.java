@@ -24,7 +24,7 @@ public class ColisionDetector {
 
     private boolean check(List<? extends Representable> representables, Representable target) {
         for (Representable other : representables) {
-            if (target.overlaps(other)) {
+            if (other.overlaps(target)) {
                 return true;
             }
         }
