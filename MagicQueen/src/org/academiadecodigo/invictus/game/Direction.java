@@ -28,4 +28,8 @@ public enum Direction {
         return opposite;
     }
 
+    public boolean isOpposite(Direction dir) {
+        return dir.equals(oppositeDirection());
+    }
+
 }
