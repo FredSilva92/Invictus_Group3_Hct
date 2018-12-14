@@ -4,7 +4,7 @@ package org.academiadecodigo.invictus.game.representable;
 import org.academiadecodigo.invictus.game.Game;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Representable {
+public class Representable implements Instantiables {
 
     protected Picture representation;
 
